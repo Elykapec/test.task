@@ -1,0 +1,16 @@
+.el-input__inner {
+  border: 1px solid rgba(29, 36, 82, 0.1);
+  border-radius: 8px;
+  &:hover {
+    border-color: rgba(29, 36, 82, 0.25);
+  }
+}
+
+.el-form-item__label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(29, 36, 82, 0.5);
+}

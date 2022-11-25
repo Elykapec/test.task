@@ -1,76 +1,57 @@
 <template>
-  <el-dialog :visible="true" @close="emitCLose" :class="$style.popup">
-    <el-tabs v-model="activeTab">
-      <el-tab-pane :name="1">
-        <span slot="label"><div :class="$style.tab"><span :class="$style.tabNumber">1</span> Main Info</div></span>
+  <div
+    :class="{
+      [$style.tab]: true,
+      [$style.checked]: isDone
+    }"
+  >
+    <span
+      :class="$style.tabNumber"
+      class="mr-2"
+    >
+      <svg
+        v-if="isDone"
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2.40039 7.19998L4.80039 9.59998L10.8004 3.59998"
+          stroke="white"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
 
-        <el-form label-position="top" :model="formLabelAlign" :class="$style.popupStepOne">
-          <el-form-item label="Name">
-            <el-input v-model="formLabelAlign.name"></el-input>
-          </el-form-item>
-          <el-form-item label="Activity zone">
-            <el-input v-model="formLabelAlign.region"></el-input>
-          </el-form-item>
-          <el-form-item label="Activity form">
-            <el-input v-model="formLabelAlign.type"></el-input>
-          </el-form-item>
-          <el-form-item label="Name">
-            <el-input v-model="formLabelAlign.name"></el-input>
-          </el-form-item>
-          <el-form-item label="Activity zone">
-            <el-input v-model="formLabelAlign.region"></el-input>
-          </el-form-item>
-          <el-form-item label="Activity form">
-            <el-input v-model="formLabelAlign.type"></el-input>
-          </el-form-item>
-        </el-form>
-      </el-tab-pane>
-
-      <el-tab-pane :name="2">
-        <span slot="label"><div :class="$style.tab"><span :class="$style.tabNumber">2</span> Main Info</div></span>
-      </el-tab-pane>
-      <el-tab-pane :name="3">
-        <span slot="label"><div :class="$style.tab"><span :class="$style.tabNumber">3</span> Main Info</div></span>
-      </el-tab-pane>
-      <el-tab-pane :name="4">
-        <span slot="label"><div :class="$style.tab"><span :class="$style.tabNumber">4</span> Main Info</div></span>
-      </el-tab-pane>
-    </el-tabs>
-  </el-dialog>
+      <span v-else>{{ number }}</span>
+    </span>
+    {{ title }}
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class InviteUserPopup extends Vue {
-  @Prop() private config!: string
-
-  @Emit('close') emitCLose () {
-    return null
-  }
-
-  activeTab: 1|2|3|4 = 1;
-
-  formLabelAlign = {
-    name: '',
-    region: '',
-    type: ''
-  }
+export default class InviteUserPopupTabNumber extends Vue {
+  @Prop({ required: true }) private number!: number;
+  @Prop({ required: true }) private title!: string;
+  @Prop({ required: true }) private isDone!: boolean;
 }
 </script>
 
 <style lang="scss" module>
-.popup {
-  :global(.el-form--label-top .el-form-item__label) {
-    float: left;
-    line-height: 1em;
-    padding-bottom: 4px;
-  }
+.tab {
+  color: #5E6A75;
 }
 
 .tabNumber {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
   line-height: 30px;
   width: 30px;
@@ -80,16 +61,23 @@ export default class InviteUserPopup extends Vue {
   border: 1px solid transparentize(#5E6A75, 0.95);
   color: #5E6A75;
   font-weight: bold;
-
-  :global(.el-tabs__item.is-active) & {
-    background: rgba(65, 90, 218, 0.05);
-    color: #415ADA;
+  &.done {
+    background: #415ADA;
   }
 }
 
-.popupStepOne {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+.checked {
+  color: rgb(142 145 168);
+
+  .tabNumber {
+    background: #415ADA;
+  }
+}
+
+:global(.el-tabs__item.is-active) .tab {
+  color: #415ADA;
+  .tabNumber {
+    color: #415ADA !important;
+  }
 }
 </style>
