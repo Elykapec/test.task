@@ -1,6 +1,10 @@
+@import "variables";
+
+
 .el-input__inner {
   border: 1px solid rgba(29, 36, 82, 0.1);
   border-radius: 8px;
+  color: $textColor !important;
   &:hover {
     border-color: rgba(29, 36, 82, 0.25);
   }

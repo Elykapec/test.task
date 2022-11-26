@@ -1,0 +1,36 @@
+.el-tag.el-tag--info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px 8px;
+  gap: 8px;
+  height: 26px;
+  background: #F4F4FF;
+  border-radius: 5px;
+  border: none;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 144%;
+  color: #1D2452;
+}
+
+.el-tag {
+  .el-tag__close {
+    background-color: transparent;
+    font-size: 16px;
+    &:hover {
+      color: darken(#909399, 30%) !important;
+    }
+  }
+  .el-tag__close.el-icon-close:before {
+    content: "\e6db" !important;
+  }
+}
+
+.el-select {
+  .el-tag__close {
+    background-color: transparent !important;
+  }
+}

@@ -1,0 +1,7 @@
+@import "variables";
+
+.el-switch__label {
+  &.is-active {
+    color: $textColor !important;
+  }
+}

@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    @click.self="showInviteUserPopup = true"
+  >
     <img
       alt="Vue logo"
       src="./assets/logo.png"
