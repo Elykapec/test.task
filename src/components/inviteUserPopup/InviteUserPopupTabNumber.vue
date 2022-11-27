@@ -16,6 +16,7 @@
         viewBox="0 0 12 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        :class="$style.checkbox"
       >
         <path
           d="M2.40039 7.19998L4.80039 9.59998L10.8004 3.59998"
@@ -60,7 +61,6 @@ export default class InviteUserPopupTabNumber extends Vue {
   background: transparentize(#5E6A75, 0.95);
   border: 1px solid transparentize(#5E6A75, 0.95);
   color: #5E6A75;
-  font-weight: bold;
   &.done {
     background: #415ADA;
   }
@@ -79,5 +79,17 @@ export default class InviteUserPopupTabNumber extends Vue {
   .tabNumber {
     color: #415ADA !important;
   }
+}
+
+@keyframes bounceIn {
+  0%   { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+.checkbox {
+  animation-name: bounceIn;
+  animation-timing-function: cubic-bezier(.47,1.64,.41,.8);
+  animation-duration: 700ms;
+  animation-iteration-count: initial;
 }
 </style>

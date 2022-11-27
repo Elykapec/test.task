@@ -167,6 +167,11 @@
 </template>
 
 <script type="text/babel">
+
+// This is patched selector element. Allows you to display more than one tag before collapsing
+// https://element.eleme.io/#/en-US/component/select#create-new-items
+
+
   import Emitter from 'element-ui/src/mixins/emitter';
   import Focus from 'element-ui/src/mixins/focus';
   import Locale from 'element-ui/src/mixins/locale';

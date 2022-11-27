@@ -88,4 +88,8 @@ module.exports = {
     'semi': 'off',
     '@typescript-eslint/semi': ['error'],
   },
+  ignorePatterns: [
+    'src/components/element-custom/**/*.*',
+    'src/components/element-custom/*.*',
+  ],
 };
