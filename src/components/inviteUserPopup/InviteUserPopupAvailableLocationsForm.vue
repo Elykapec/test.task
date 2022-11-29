@@ -76,7 +76,7 @@ export interface AvailableLocationInterface {
     ElSelectPatched,
   },
 })
-export default class InviteUserPopupAvailableLocation extends Vue {
+export default class InviteUserPopupAvailableLocationsForm extends Vue {
   @Prop() private readonly formDataInit!: AvailableLocationInterface;
   protected locations = locations;
 

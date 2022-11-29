@@ -153,7 +153,7 @@ import Departments from '@/model/Departments';
 import InviteUserPopupMainInfoForm from '@/components/inviteUserPopup/InviteUserPopupMainInfoForm.vue';
 import {MainInfoFormInterface} from '@/components/inviteUserPopup/InviteUserPopupMainInfoForm.vue';
 import locations from '@/mocks/locationsList';
-import InviteUserPopupAvailableLocation from '@/components/inviteUserPopup/InviteUserPopupAvailableLocation.vue';
+import InviteUserPopupAvailableLocationsForm from '@/components/inviteUserPopup/InviteUserPopupAvailableLocationsForm.vue';
 
 enum TabSteps {
   'step1' = '1',
@@ -170,15 +170,15 @@ enum TabSteps {
     ElSelectPatched,
     InviteUserPopupCollapse,
     InviteUserPopupMainInfoForm,
-    InviteUserPopupAvailableLocation,
+    InviteUserPopupAvailableLocation: InviteUserPopupAvailableLocationsForm,
   },
 })
 export default class InviteUserPopup extends Vue {
   @Ref('formStepOne') formStepOne!: ElForm;
   @Ref('firstTabMainInfo') firstTabMainInfo!: InviteUserPopupMainInfoForm;
-  @Ref('availableLocationPrecoro') availableLocationPrecoroFrom!: InviteUserPopupAvailableLocation;
-  @Ref('availableLocationPrecoroDevelopment') availableLocationPrecoroDevelopmentFrom!: InviteUserPopupAvailableLocation;
-  @Ref('availableLocationProcurement') availableLocationProcurementFrom!: InviteUserPopupAvailableLocation;
+  @Ref('availableLocationPrecoro') availableLocationPrecoroFrom!: InviteUserPopupAvailableLocationsForm;
+  @Ref('availableLocationPrecoroDevelopment') availableLocationPrecoroDevelopmentFrom!: InviteUserPopupAvailableLocationsForm;
+  @Ref('availableLocationProcurement') availableLocationProcurementFrom!: InviteUserPopupAvailableLocationsForm;
 
   @Prop() private config!: string;
 
