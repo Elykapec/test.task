@@ -48,19 +48,19 @@
           :steps="collapsibleListSecondTab"
         >
           <template :slot="Departments.precoro">
-            <InviteUserPopupAvailableLocation
+            <InviteUserPopupAvailableLocationsForm
               ref="availableLocationPrecoro"
               :form-data-init.sync="tabs.second.form[Departments.precoro]"
             />
           </template>
           <template :slot="Departments.precoroDevelopment">
-            <InviteUserPopupAvailableLocation
+            <InviteUserPopupAvailableLocationsForm
               ref="availableLocationPrecoroDevelopment"
               :form-data-init.sync="tabs.second.form[Departments.precoroDevelopment]"
             />
           </template>
           <template :slot="Departments.procurement">
-            <InviteUserPopupAvailableLocation
+            <InviteUserPopupAvailableLocationsForm
               ref="availableLocationProcurement"
               :form-data-init.sync="tabs.second.form[Departments.procurement]"
             />
@@ -82,6 +82,28 @@
             :is-done="tabs.third.isDone"
           />
         </template>
+        <InviteUserPopupCollapse
+          :steps="collapsibleListThirdTab"
+        >
+          <template :slot="Departments.precoro">
+            <InviteUserPopupAvailableDocumentsForm
+              ref="availableLocationPrecoro"
+              :form-data-init.sync="tabs.third.form[Departments.precoro]"
+            />
+          </template>
+          <template :slot="Departments.precoroDevelopment">
+            <InviteUserPopupAvailableDocumentsForm
+              ref="availableLocationPrecoroDevelopment"
+              :form-data-init.sync="tabs.third.form[Departments.precoroDevelopment]"
+            />
+          </template>
+          <template :slot="Departments.procurement">
+            <InviteUserPopupAvailableDocumentsForm
+              ref="availableLocationProcurement"
+              :form-data-init.sync="tabs.third.form[Departments.procurement]"
+            />
+          </template>
+        </InviteUserPopupCollapse>
       </el-tab-pane>
 
 
@@ -153,7 +175,12 @@ import Departments from '@/model/Departments';
 import InviteUserPopupMainInfoForm from '@/components/inviteUserPopup/InviteUserPopupMainInfoForm.vue';
 import {MainInfoFormInterface} from '@/components/inviteUserPopup/InviteUserPopupMainInfoForm.vue';
 import locations from '@/mocks/locationsList';
-import InviteUserPopupAvailableLocationsForm from '@/components/inviteUserPopup/InviteUserPopupAvailableLocationsForm.vue';
+import InviteUserPopupAvailableLocationsForm, {
+  AvailableLocationInterface,
+} from '@/components/inviteUserPopup/InviteUserPopupAvailableLocationsForm.vue';
+import InviteUserPopupAvailableDocumentsForm, {
+  AvailableDocumentsInterface,
+} from '@/components/inviteUserPopup/InviteUserPopupAvailableDocumentsForm.vue';
 
 enum TabSteps {
   'step1' = '1',
@@ -161,6 +188,8 @@ enum TabSteps {
   'step3' = '3',
   'step4' = '4',
 }
+
+type DepartmentsForm<T> = Record<Departments, T>;
 
 @Component({
   components: {
@@ -170,7 +199,8 @@ enum TabSteps {
     ElSelectPatched,
     InviteUserPopupCollapse,
     InviteUserPopupMainInfoForm,
-    InviteUserPopupAvailableLocation: InviteUserPopupAvailableLocationsForm,
+    InviteUserPopupAvailableLocationsForm,
+    InviteUserPopupAvailableDocumentsForm,
   },
 })
 export default class InviteUserPopup extends Vue {
@@ -229,21 +259,57 @@ export default class InviteUserPopup extends Vue {
           selectAllLocation: false,
           selectAllLocationIndeterminate: false,
         },
-      },
+      } as DepartmentsForm<AvailableLocationInterface>,
     },
     third: {
       num: 3,
       isDone: false,
       title: 'Available Documents Custom Fields',
       form: {
-      },
+        [Departments.precoro]: {
+          classes: [],
+          department: [],
+          dcf3: [],
+          selectAllDocumentsCustomFields: false,
+          checkAllClasses: false,
+          checkAllDepartment: false,
+          checkAllDCF3: false,
+        },
+        [Departments.precoroDevelopment]: {
+          classes: [],
+          department: [],
+          dcf3: [],
+          selectAllDocumentsCustomFields: false,
+          checkAllClasses: false,
+          checkAllDepartment: false,
+          checkAllDCF3: false,
+        },
+        [Departments.procurement]: {
+          classes: [],
+          department: [],
+          dcf3: [],
+          selectAllDocumentsCustomFields: false,
+          checkAllClasses: false,
+          checkAllDepartment: false,
+          checkAllDCF3: false,
+        },
+      } as DepartmentsForm<AvailableDocumentsInterface>,
     },
     fourth: {
       num: 4,
       isDone: false,
       title: 'Roles',
       form: {
-      },
+        [Departments.precoro]: {
+          selectAllDocumentsCustomFields: false,
+        },
+        [Departments.precoroDevelopment]: {
+          selectAllDocumentsCustomFields: false,
+        },
+        [Departments.procurement]: {
+          selectAllDocumentsCustomFields: false,
+        },
+      } as DepartmentsForm<AvailableDocumentsInterface>,
     },
   };
 
@@ -271,6 +337,35 @@ export default class InviteUserPopup extends Vue {
     ];
   }
 
+  get collapsibleListThirdTab(): InviteUserPopupCollapseStep[] {
+    return [
+      {
+        title: 'Precoro',
+        slotName: Departments.precoro,
+        additionalInfo: 'Selected ' +
+          (this.tabs.third.form[Departments.precoro].classes.length +
+          this.tabs.third.form[Departments.precoro].department.length +
+          this.tabs.third.form[Departments.precoro].dcf3.length),
+      },
+      {
+        title: 'Precoro Development',
+        slotName: Departments.precoroDevelopment,
+        additionalInfo: 'Selected ' +
+          (this.tabs.third.form[Departments.precoroDevelopment].classes.length +
+          this.tabs.third.form[Departments.precoroDevelopment].department.length +
+          this.tabs.third.form[Departments.precoroDevelopment].dcf3.length),
+      },
+      {
+        title: 'Procurement',
+        slotName: Departments.procurement,
+        additionalInfo: 'Selected ' +
+          (this.tabs.third.form[Departments.procurement].classes.length +
+          this.tabs.third.form[Departments.procurement].department.length +
+          this.tabs.third.form[Departments.procurement].dcf3.length),
+      },
+    ];
+  }
+
   toNextStep() {
     const steps: TabSteps[] = [
       TabSteps.step1,
@@ -291,6 +386,7 @@ export default class InviteUserPopup extends Vue {
 
 <style lang="scss" module>
 .popup {
+  //@todo inner code below should be moved to a separate scss file/s
   :global(.el-dialog) {
     background: #FFFFFF;
     box-shadow: 0 8px 16px rgba(54, 62, 113, 0.24);
@@ -308,6 +404,38 @@ export default class InviteUserPopup extends Vue {
   :global(.el-form-item) {
     padding: 0;
     margin: 0;
+  }
+
+  :global(.el-checkbox__inner) {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+  }
+
+  :global(.el-checkbox__inner)::after {
+    height: 8px;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+  }
+  :global(.el-checkbox__input.is-indeterminate .el-checkbox__inner::before) {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    height: 2px;
+    transform: scale(0.5);
+    left: 0;
+    right: 0;
+    top: 7px;
+  }
+
+  :global(.el-checkbox__label) {
+    display: inline-block;
+    padding-left: 10px;
+    line-height: 19px;
+    font-size: 14px;
+    color: #1D2452;
   }
 }
 
