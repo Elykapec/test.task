@@ -6,8 +6,20 @@
   line-height: 32px;
 }
 
+.el-dialog {
+  background: #FFFFFF;
+  box-shadow: 0 8px 16px rgba(54, 62, 113, 0.24);
+  border-radius: 16px;
+  padding: 18px 24px;
+  overflow: hidden;
+}
+
 .el-dialog__headerbtn {
-  top: 35px !important;
+  top: 17px !important;
+}
+
+.el-dialog__header {
+  padding: 0 0 10px !important;
 }
 
 .el-dialog__close.el-icon.el-icon-close {
@@ -16,4 +28,8 @@
     content: "\e78d" !important;
     font-size: 26px;
   }
+}
+
+.el-dialog__body {
+  padding: 0 0 10px 0;
 }

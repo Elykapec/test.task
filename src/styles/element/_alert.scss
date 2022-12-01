@@ -1,0 +1,24 @@
+.el-alert {
+  margin-top: 20px !important;
+  background: rgba(244, 244, 255, 0.5) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  width: fit-content !important;
+
+  .el-alert__title {
+    font-family: 'Inter', sans-serif !important;
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: .8em !important;
+    color: rgba(29, 36, 82, 0.5) !important;
+  }
+
+  .el-alert__icon.el-icon-info {
+    margin-right: 10px !important;
+    &::before {
+      content: "\e6c9" !important;
+      font-size: 25px !important;
+    }
+  }
+}

@@ -1,17 +1,36 @@
 <template>
   <div class="flex justify-between items-center w-full">
     <span :class="$style.title">{{ title }}</span>
-    <span :class="$style.subTitle">{{ subTitle }}</span>
+    <el-tooltip
+      v-if="trimSubtitle"
+      :content="subTitle"
+    >
+      <span :class="$style.subTitle">{{ subTitleTrimmed }}</span>
+    </el-tooltip>
+    <span
+      v-else
+      :class="$style.subTitle"
+    >{{ subTitleTrimmed }}</span>
   </div>
 </template>
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator';
 
+const subTitleLimit = 50;
+
 @Component
 export default class InviteUserPopupCollapseTitle extends Vue {
   @Prop() private title!: string;
   @Prop() private subTitle!: string;
+
+  get trimSubtitle(): boolean {
+    return this.subTitle.length > subTitleLimit;
+  }
+
+  get subTitleTrimmed(): string {
+    return this.trimSubtitle ? this.subTitle.substring(0, subTitleLimit - 3).trim() + '...' : this.subTitle;
+  }
 }
 </script>
 

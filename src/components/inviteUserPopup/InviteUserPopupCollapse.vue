@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import InviteUserPopupTabNumber from '@/components/inviteUserPopup/InviteUserPopupTabNumber.vue';
+import InviteUserPopupTabWithNumber from '@/components/inviteUserPopup/InviteUserPopupTabWithNumber.vue';
 import InviteUserPopupCollapseTitle from '@/components/inviteUserPopup/InviteUserPopupCollapseTitle.vue';
 import Departments from '@/model/Departments';
 
@@ -34,7 +34,7 @@ export interface InviteUserPopupCollapseStep {
 
 @Component({
   components: {
-    InviteUserPopupTabNumber,
+    InviteUserPopupTabNumber: InviteUserPopupTabWithNumber,
     InviteUserPopupCollapseTitle,
   },
 })

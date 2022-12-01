@@ -68,7 +68,7 @@ export const availableDocsTreeDepartments: TreeNode[] = [
                 label: 'iOS & Android Devs',
               },
               {
-                id: 10,
+                id: 12,
                 label: '4th Sub-Developers',
               },
             ],
@@ -103,7 +103,7 @@ export const availableDocsTreeDFC3: TreeNode[] = [
             label: 'Class 111',
           },
           {
-            id: 10,
+            id: 1221,
             label: 'Class 112',
           },
         ],

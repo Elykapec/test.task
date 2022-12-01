@@ -1,8 +1,10 @@
 <template>
   <el-form
+    v-if="formLocal"
     label-position="top"
     :model="formLocal"
     :class="$style.grid"
+    class="pt-5"
   >
     <el-form-item label="First Name">
       <el-input
@@ -87,15 +89,7 @@ export interface MainInfoFormInterface {
 export default class InviteUserPopupMainInfoForm extends Vue {
   @Prop() private readonly formDataInit!: MainInfoFormInterface;
 
-  protected formLocal: MainInfoFormInterface = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    position: '',
-    availableCompanies: [],
-    activeInAllCompanies: true,
-  };
+  protected formLocal: MainInfoFormInterface|null = null;
 
   protected availableCompaniesOptions = [
     { id: 1, name: 'Precoro'},

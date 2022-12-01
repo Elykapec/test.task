@@ -1,3 +1,31 @@
 .el-collapse-item__arrow {
   transform: rotate(-90deg);
 }
+
+.el-collapse {
+  &:first-of-type {
+    border-top: none !important;
+  }
+  &:last-of-type {
+    border-bottom: none !important;
+  }
+}
+
+.el-collapse-item__header {
+  border-bottom: none !important;
+}
+
+.el-collapse-item {
+  border-bottom: 2px solid #DDDEE5 !important;
+  &:last-of-type {
+    border-bottom: none !important;
+  }
+}
+
+.el-collapse-item__wrap {
+  border: none !important;
+}
+
+.el-collapse-item__content {
+  padding-top: 5px;
+}

@@ -1,5 +1,6 @@
 <template>
   <el-form
+    v-if="formLocal"
     v-model="formLocal"
     label-position="top"
     class="flex flex-col gap-5"
@@ -155,16 +156,7 @@ export default class InviteUserPopupAvailableDocumentsForm extends Vue {
     ];
   }
 
-  formLocal: AvailableDocumentsInterface = {
-    selectAllDocumentsCustomFields: false,
-    checkAllDepartment: false,
-    checkAllClasses: false,
-    checkAllDCF3: false,
-
-    department: [],
-    classes: [],
-    dcf3: [],
-  };
+  formLocal: AvailableDocumentsInterface|null = null;
 
   availableDocsTreeClasses = availableDocsTreeClasses;
   availableDocsTreeDepartments = availableDocsTreeDepartments;
@@ -181,6 +173,7 @@ export default class InviteUserPopupAvailableDocumentsForm extends Vue {
   }
 
   protected selectAllDocumentsCustomFields(checked: boolean) {
+    if (!this.formLocal) return;
     this.formLocal.checkAllClasses = checked;
     this.formLocal.checkAllDepartment = checked;
     this.formLocal.checkAllDCF3 = checked;
@@ -199,6 +192,7 @@ export default class InviteUserPopupAvailableDocumentsForm extends Vue {
   }
 
   protected getCheckedKeys() {
+    if (!this.formLocal) return;
     this.formLocal.dcf3 = this.treeDFC3Ref.getCheckedKeys();
     this.formLocal.department = this.treeDepartmentsRef.getCheckedKeys();
     this.formLocal.classes = this.treeClassesRef.getCheckedKeys();
@@ -212,7 +206,7 @@ export default class InviteUserPopupAvailableDocumentsForm extends Vue {
 
   :global(.el-tree-node__content) {
     display: grid;
-    grid-template-columns: $nodeHeight 1fr $nodeHeight;
+    grid-template-columns: 28px 1fr $nodeHeight;
     grid-template-areas: "a b c";
     height: $nodeHeight;
     align-content: center;
@@ -258,7 +252,19 @@ export default class InviteUserPopupAvailableDocumentsForm extends Vue {
 
     > :global(.tree-node) {
       grid-area: b;
-      line-height: $nodeHeight;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      /* identical to box height */
+
+      display: flex;
+      align-items: center;
+
+      /* main/navy blue */
+
+      color: #1D2452;
     }
 
     > :global(.el-checkbox) {

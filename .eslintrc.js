@@ -87,6 +87,7 @@ module.exports = {
     'padded-blocks': ['error', 'never'],
     'semi': 'off',
     '@typescript-eslint/semi': ['error'],
+    '@typescript-eslint/no-non-null-assertion': 'off',
   },
   ignorePatterns: [
     'src/components/element-custom/**/*.*',

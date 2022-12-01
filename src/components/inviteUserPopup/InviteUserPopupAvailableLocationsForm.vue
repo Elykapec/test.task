@@ -1,5 +1,6 @@
 <template>
   <el-form
+    v-if="formLocal"
     v-model="formLocal"
     label-position="top"
     class="flex flex-col gap-5"
@@ -80,12 +81,7 @@ export default class InviteUserPopupAvailableLocationsForm extends Vue {
   @Prop() private readonly formDataInit!: AvailableLocationInterface;
   protected locations = locations;
 
-  protected formLocal: AvailableLocationInterface = {
-    mainLocation: locations[0],
-    selectedLocations: [] as string[],
-    selectAllLocation: false,
-    selectAllLocationIndeterminate: false,
-  };
+  protected formLocal: AvailableLocationInterface|null = null;
 
   @Watch('formLocal', { deep: true })
   @Emit('update:form-data-init')
@@ -98,10 +94,14 @@ export default class InviteUserPopupAvailableLocationsForm extends Vue {
   }
 
   protected onSelectMainLocation() {
+    if (!this.formLocal) return;
+
     this.formLocal.selectedLocations = [];
   }
 
   protected onCheckAllLocations() {
+    if (!this.formLocal) return;
+
     if (!this.formLocal.selectAllLocation) {
       this.formLocal.selectedLocations = [];
     } else {
@@ -111,6 +111,8 @@ export default class InviteUserPopupAvailableLocationsForm extends Vue {
   }
 
   protected onSelectSubLocation() {
+    if (!this.formLocal) return;
+
     this.formLocal.selectAllLocationIndeterminate =
       this.formLocal.selectedLocations.length !==
       this.formLocal.mainLocation.locations.length;

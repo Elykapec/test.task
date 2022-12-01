@@ -37,7 +37,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class InviteUserPopupTabNumber extends Vue {
+export default class InviteUserPopupTabWithNumber extends Vue {
   @Prop({ required: true }) private number!: number;
   @Prop({ required: true }) private title!: string;
   @Prop({ required: true }) private isDone!: boolean;
@@ -46,7 +46,15 @@ export default class InviteUserPopupTabNumber extends Vue {
 
 <style lang="scss" module>
 .tab {
-  color: #5E6A75;
+  color: #5E6A75 !important;
+  height: 55px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  :global(.is-active) & {
+    color: #415ADA !important;
+  }
 }
 
 .tabNumber {
